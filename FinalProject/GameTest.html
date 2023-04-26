@@ -1,0 +1,358 @@
+<html>
+    <head>
+        <!-- A-Frame -->
+        <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+        <!-- Physics -->
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+        <!-- Animation -->
+        <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
+</head>
+    </head>
+    <body>
+        <a-scene physics="debug: false">
+            <a-assets>
+                <img id="plastic_info" src="Plastic.png">
+                <img id="paper_info" src="Paper.png">
+                <img id="glass_info" src="Glass.png">
+                <img id="organic_info" src="Organic.png">
+                <img id="congrats" src="Congrats.png">
+                <img id="oops" src="Oops.png">
+                <img id="woohoo" src="Success.png">
+                <img id="chat_bubble" src="ChatBubble.png">
+            </a-assets>
+
+            <!-- Camera -->
+            <a-entity 
+                camera 
+                look-controls 
+                wasd-controls 
+                id="camera" 
+                position="-17 -5 10"
+                static-body>
+                
+                <!-- Cursor -->
+                <a-cursor></a-cursor>
+
+                <!-- Plastic Info -->
+                <a-image
+                    id="plastic"
+                    material="src: #plastic_info"
+                    visible="false"
+                    position="-2 0 -3"
+                    width="1"
+                    height="2"
+                    scale="2 2 2"
+                ></a-image>
+
+                <!-- Paper Info -->
+                <a-image
+                    id="paper"
+                    material="src: #paper_info"
+                    visible="false"
+                    position="-2 0 -3"
+                    width="1"
+                    height="2"
+                    scale="2 2 2"
+                ></a-image>
+
+                <!-- Glass Info -->
+                <a-image
+                    id="glass"
+                    material="src: #glass_info"
+                    visible="false"
+                    position="-2 0 -3"
+                    width="1"
+                    height="2"
+                    scale="2 2 2"
+                ></a-image>
+
+                <!-- Organic Info -->
+                <a-image
+                    id="organic"
+                    material="src: #organic_info"
+                    visible="false"
+                    position="-2 0 -3"
+                    width="1"
+                    height="2"
+                    scale="2 2 2"
+                ></a-image>
+
+                <!-- Congrats -->
+                <a-image
+                    id="congrats"
+                    material="src: #congrats"
+                    visible="false"
+                    position="0 1.2 -3"
+                    width="1"
+                    height="1"
+                    scale="2 2 2"
+                ></a-image>
+
+                <!-- Woohoo -->
+                <a-image
+                    id="woohoo"
+                    material="src: #woohoo"
+                    visible="false"
+                    position="0 1.2 -3"
+                    width="1"
+                    height="1"
+                    scale="2 2 2"
+                ></a-image>
+
+                <!-- Oops -->
+                <a-image
+                    id="oops"
+                    material="src: #oops"
+                    visible="false"
+                    position="0 1.2 -3"
+                    width="1"
+                    height="1"
+                    scale="2 2 2"
+                ></a-image>
+            </a-entity>
+
+            <!-- Island -->
+            <a-entity
+                gltf-model="island.glb"
+                position="0 -35 0"
+                scale="3 3 3"
+                static-body
+            ></a-entity>
+
+            <!-- Crab -->
+            <a-entity
+                gltf-model="crab.glb"
+                position="-25 -10 0"
+                rotation="0 230 0"
+                crabhandler=""
+            ></a-entity>
+
+            <!-- Chat Bubble -->
+            <a-image
+                id="chat"
+                material="src: #chat_bubble"
+                visible="false"
+                position="-24 -7 -1.5"
+                scale="4 4 4"
+                rotation="0 50 0"
+            ></a-image>
+            
+            <!-- Plastic Waste -->
+            <a-entity
+                id="plastic"
+                gltf-model="plastic_waste.glb"
+                position="15 -12 30"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                wastehandler=""
+            ></a-entity>
+
+            <!-- Organic Waste -->
+            <a-entity
+                id="organic"
+                gltf-model="organic_waste.glb"
+                position="-30 -11 15"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                wastehandler=""
+            ></a-entity>
+
+            <!-- Paper Waste -->
+            <a-entity
+                id="paper"
+                gltf-model="paper_waste.glb"
+                position="-30 -16 50"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                wastehandler=""
+            ></a-entity>
+
+            <!-- Glass Waste -->
+            <a-entity
+                id="glass"
+                gltf-model="glass_waste.glb"
+                position="34 -17 54"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                wastehandler=""
+            ></a-entity>
+
+
+            <!-- Organic Can -->
+            <a-entity
+                id="organic" 
+                gltf-model="organic_bin.glb"
+                position="-21 -10 -4"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                recyclehandler=""
+            ></a-entity>
+
+            <!-- Plastic Can -->
+            <a-entity 
+                id="plastic"
+                gltf-model="plastic_bin.glb"
+                position="-12 -10 -4"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                recyclehandler=""
+            ></a-entity>
+
+            <!-- Paper Can -->
+            <a-entity
+                id="paper" 
+                gltf-model="paper_bin.glb"
+                position="-18 -10 -4"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                recyclehandler=""
+            ></a-entity>
+
+            <!-- Glass Can -->
+            <a-entity 
+                id="glass"
+                gltf-model="glass_bin.glb"
+                position="-15 -10 -4"
+                animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+                recyclehandler=""
+            ></a-entity>
+        </a-scene>
+
+        <script>
+            
+            // Number of Waste Products Recycled
+            var recycleNum = 0;
+            
+            // Events for waste entities
+            AFRAME.registerComponent('wastehandler', {
+                schema: {
+                    txt: {default:'default'}
+                },        
+                init: function () {
+                    var data = this.data;
+                    var el = this.el;
+
+                    // Picks up waste on click if no other waste is held      
+                    el.addEventListener('click', function () {
+                        var camEl = document.querySelector('#camera');
+
+                        if (camEl.querySelectorAll('a-entity').length == 0) {
+                            var pickUpEl = document.createElement('a-entity');
+
+                            pickUpEl.setAttribute('id', el.getAttribute('id'));
+                            pickUpEl.setAttribute('gltf-model', el.getAttribute('gltf-model'));
+                            pickUpEl.setAttribute('position', {x: 1, y: -1, z: -2}); 
+
+                            camEl.appendChild(pickUpEl);
+                            el.parentNode.removeChild(el);
+                        }      
+                    });
+                    
+                    // Makes waste info visible upon mouse entering
+                    el.addEventListener('mouseenter', function() {
+                        var camEl = document.querySelector('#camera');
+
+                        var infoEl = camEl.querySelectorAll('a-image');
+                        for (var i = 0; i < infoEl.length; i++) {
+                            if (infoEl[i].getAttribute('id') == el.getAttribute('id')) {
+                                infoEl[i].setAttribute('visible', 'true');
+                            }
+                        }
+                    });
+                    
+                    //Makes waste info invisible upon mouse leaving
+                    el.addEventListener('mouseleave', function() {
+                        var camEl = document.querySelector('#camera');
+                        var infoEl = camEl.querySelectorAll('a-image');
+                        for (var i = 0; i < infoEl.length; i++) {
+                            infoEl[i].setAttribute('visible', 'false');
+                        }
+                    });
+                }
+            });
+
+            // Events for recycling bin entities
+            AFRAME.registerComponent('recyclehandler', {
+                schema: {
+                    txt: {default:'default'}
+                },        
+                init: function () {
+                    var data = this.data;
+                    var el = this.el;
+
+                    //Throws away held waste if waste id matches the bin id and increments the recycle counter
+                    el.addEventListener('click', function () {
+                        var camEl = document.querySelector('#camera');
+
+                        if (camEl.querySelectorAll('a-entity').length == 1) {
+                            var heldEl = camEl.querySelectorAll('a-entity')[0];
+
+                            if (heldEl.id == el.id) {
+                                heldEl.parentNode.removeChild(heldEl);
+                                recycleNum++;
+                                var infoEl = document.querySelectorAll('a-image');
+                                if (recycleNum < 4) {
+                                    for (var i = 0; i < infoEl.length; i++) {
+                                        if (infoEl[i].getAttribute('id') == 'woohoo') {
+                                            infoEl[i].setAttribute('visible', 'true');
+                                        }
+                                    }
+                                } else if (recycleNum >= 4) {
+                                    for (var i = 0; i < infoEl.length; i++) {
+                                        if (infoEl[i].getAttribute('id') == 'congrats') {
+                                            infoEl[i].setAttribute('visible', 'true');
+                                        }
+                                    }
+                                }                
+                            } else {
+                                for (var i = 0; i < infoEl.length; i++) {
+                                        if (infoEl[i].getAttribute('id') == 'oops') {
+                                            infoEl[i].setAttribute('visible', 'true');
+                                        }
+                                }
+                            }
+                        }      
+                    });
+                    
+                    el.addEventListener('mouseleave', function() {
+                        var infoEl = document.querySelectorAll('a-image');
+                        for (var i = 0; i < infoEl.length; i++) {
+                            infoEl[i].setAttribute('visible', 'false');
+                        }
+                    });
+                }
+            });
+
+            // Events for the crab
+            AFRAME.registerComponent('crabhandler', {
+                schema: {
+                    txt: {default:'default'}
+                },        
+                init: function () {
+                    var data = this.data;
+                    var el = this.el;
+
+                    // Makes chat bubble visible upon mouse entering
+                    el.addEventListener('mouseenter', function() {
+                        var infoEl = document.querySelectorAll('a-image');
+                        for (var i = 0; i < infoEl.length; i++) {
+                            if (infoEl[i].getAttribute('id') == 'chat') {
+                                infoEl[i].setAttribute('visible', 'true');
+                            }
+                        }
+                    });
+                    
+                    //Makes chat bubble invisible upon mouse leaving
+                    el.addEventListener('mouseleave', function() {
+                        var infoEl = document.querySelectorAll('a-image');
+                        for (var i = 0; i < infoEl.length; i++) {
+                            infoEl[i].setAttribute('visible', 'false');
+                        }
+                    });
+                }
+            });
+
+        </script>
+    </body>
+</html>
